@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Pest Damage Severity Analyzer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0f172a;
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            opacity: 0.7;
+        }
+
+        .btn {
+            background: #10b981;
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+        .btn:hover { background: #0d966b; }
+
+        #file-input {
+            display: none;
+        }
+
+        .results-box {
+            margin-top: 20px;
+            padding: 20px;
+            background: #0f1a2c;
+            border-radius: 12px;
+        }
+
+        .tag {
+            padding: 8px 14px;
+            border-radius: 8px;
+            background: #334155;
+            display: inline-block;
+            margin-right: 10px;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .img-box {
+            margin-top: 20px;
+            background: #0d1b2a;
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .img-box img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        pre {
+            background: #0d1320;
+            padding: 15px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Pest Damage Severity Analyzer</h1>
+    <p>Upload or capture a leaf photo to classify disease & compute damage severity.</p>
+
+    <!-- File input -->
+    <input 
+        type="file" 
+        id="file-input" 
+        accept="image/*" 
+        capture="environment"
+    />
+
+    <!-- Buttons -->
+    <button class="btn" id="camera-btn">📷 Take Photo</button>
+    <button class="btn" id="upload-btn">📁 Choose File</button>
+    <button class="btn" id="analyze-btn">Analyze</button>
+
+    <p id="status"></p>
+
+    <div class="results-box" id="results" style="display:none;">
+        <span class="tag" id="res-class"></span>
+        <span class="tag" id="res-conf"></span>
+        <span class="tag" id="res-damage"></span>
+        <span class="tag" id="res-severity"></span>
+
+        <div class="img-box">
+            <img id="res-overlay" src="" alt="Overlay"/>
+        </div>
+
+        <pre id="json-output"></pre>
+    </div>
+</div>
+
+<script>
+const fileInput = document.getElementById("file-input");
+const cameraBtn = document.getElementById("camera-btn");
+const uploadBtn = document.getElementById("upload-btn");
+const analyzeBtn = document.getElementById("analyze-btn");
+const statusEl = document.getElementById("status");
+const results = document.getElementById("results");
+
+cameraBtn.addEventListener("click", () => {
+    fileInput.setAttribute("capture", "environment");
+    fileInput.click();
+});
+
+uploadBtn.addEventListener("click", () => {
+    fileInput.removeAttribute("capture");
+    fileInput.click();
+});
+
+fileInput.addEventListener("change", () => {
+    statusEl.innerText = "Photo selected.";
+});
+
+analyzeBtn.addEventListener("click", async () => {
+    if (!fileInput.files.length) {
+        alert("Please select or capture a photo first!");
+        return;
+    }
+
+    statusEl.innerText = "Analyzing...";
+    let formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+
+    try {
+        let res = await fetch("http://127.0.0.1:8000/analyze", {
+            method: "POST",
+            body: formData
+        });
+
+        let data = await res.json();
+        console.log(data);
+
+        document.getElementById("res-class").innerText = data.class;
+        document.getElementById("res-conf").innerText = "Confidence: " + data.confidence.toFixed(3);
+        document.getElementById("res-damage").innerText = "Damage: " + data.damage_percent + "%";
+        document.getElementById("res-severity").innerText = "Severity: " + data.severity;
+
+        if (data.overlay_image) {
+            document.getElementById("res-overlay").src = data.overlay_image;
+        }
+
+        document.getElementById("json-output").innerText = JSON.stringify(data, null, 4);
+        results.style.display = "block";
+
+        statusEl.innerText = "Done!";
+    } catch (err) {
+        console.error(err);
+        statusEl.innerText = "Error loading.";
+    }
+});
+</script>
+
+</body>
+</html>
