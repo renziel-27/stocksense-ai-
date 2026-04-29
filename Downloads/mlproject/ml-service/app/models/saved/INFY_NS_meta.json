@@ -1,0 +1,1 @@
+{"trained_at": "2026-04-28T23:13:45.016641", "symbol": "INFY.NS", "feature_cols": ["Close", "Open", "High", "Low", "Volume", "rsi", "macd", "sma20", "bb_pct"], "metrics": {"mape": 3.8717, "rmse": 72.5176, "mae": 53.4498, "r_squared": 0.8215, "training_samples": 348, "test_samples": 87, "epochs_run": 11}}

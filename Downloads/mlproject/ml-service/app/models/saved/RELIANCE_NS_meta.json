@@ -1,0 +1,1 @@
+{"trained_at": "2026-04-28T19:12:35.892678", "symbol": "RELIANCE.NS", "feature_cols": ["Close", "Open", "High", "Low", "Volume", "rsi", "macd", "sma20", "bb_pct"], "metrics": {"mape": 2.0045, "rmse": 34.4827, "mae": 28.7629, "r_squared": 0.7626, "training_samples": 348, "test_samples": 87, "epochs_run": 35}}

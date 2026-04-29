@@ -1,0 +1,1 @@
+{"trained_at": "2026-04-29T00:29:34.305654", "symbol": "RVNL.NS", "feature_cols": ["Close", "Open", "High", "Low", "Volume", "rsi", "macd", "sma20", "bb_pct"], "metrics": {"mape": 6.0505, "rmse": 20.9619, "mae": 17.8796, "r_squared": 0.548, "training_samples": 347, "test_samples": 87, "epochs_run": 12}}

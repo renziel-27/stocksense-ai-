@@ -1,0 +1,1 @@
+{"trained_at": "2026-04-28T23:47:53.750790", "symbol": "COALINDIA.NS", "feature_cols": ["Close", "Open", "High", "Low", "Volume", "rsi", "macd", "sma20", "bb_pct"], "metrics": {"mape": 4.8254, "rmse": 23.8326, "mae": 21.0879, "r_squared": -0.2918, "training_samples": 348, "test_samples": 87, "epochs_run": 10}}

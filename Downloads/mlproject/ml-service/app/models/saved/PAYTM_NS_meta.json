@@ -1,0 +1,1 @@
+{"trained_at": "2026-04-28T23:51:09.197953", "symbol": "PAYTM.NS", "feature_cols": ["Close", "Open", "High", "Low", "Volume", "rsi", "macd", "sma20", "bb_pct"], "metrics": {"mape": 4.5023, "rmse": 60.1592, "mae": 50.7893, "r_squared": 0.6917, "training_samples": 348, "test_samples": 87, "epochs_run": 9}}

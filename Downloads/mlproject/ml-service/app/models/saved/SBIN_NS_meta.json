@@ -1,0 +1,1 @@
+{"trained_at": "2026-04-27T06:37:13.340488", "symbol": "SBIN.NS", "feature_cols": ["Close", "Open", "High", "Low", "Volume", "rsi", "macd", "sma20", "bb_pct"], "metrics": {"mape": 12.8994, "rmse": 151.2143, "mae": 140.8609, "r_squared": -3.0318, "training_samples": 348, "test_samples": 88, "epochs_run": 9}}

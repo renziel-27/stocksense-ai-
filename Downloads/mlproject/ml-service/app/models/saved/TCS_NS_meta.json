@@ -1,0 +1,1 @@
+{"trained_at": "2026-04-28T22:09:49.114526", "symbol": "TCS.NS", "feature_cols": ["Close", "Open", "High", "Low", "Volume", "rsi", "macd", "sma20", "bb_pct"], "metrics": {"mape": 5.4559, "rmse": 170.2473, "mae": 143.0706, "r_squared": 0.7217, "training_samples": 348, "test_samples": 87, "epochs_run": 12}}

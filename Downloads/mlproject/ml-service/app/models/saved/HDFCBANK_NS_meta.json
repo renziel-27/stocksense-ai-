@@ -1,0 +1,1 @@
+{"trained_at": "2026-04-28T23:15:58.101420", "symbol": "HDFCBANK.NS", "feature_cols": ["Close", "Open", "High", "Low", "Volume", "rsi", "macd", "sma20", "bb_pct"], "metrics": {"mape": 4.4095, "rmse": 46.3057, "mae": 37.6535, "r_squared": 0.632, "training_samples": 348, "test_samples": 87, "epochs_run": 13}}

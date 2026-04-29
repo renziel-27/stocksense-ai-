@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-text font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums-custom {
+    font-variant-numeric: tabular-nums;
+  }
+  .glass-card {
+    @apply bg-surface border border-border rounded-xl shadow-lg;
+  }
+}

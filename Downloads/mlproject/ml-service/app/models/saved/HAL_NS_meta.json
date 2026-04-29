@@ -1,0 +1,1 @@
+{"trained_at": "2026-04-28T19:20:43.007295", "symbol": "HAL.NS", "feature_cols": ["Close", "Open", "High", "Low", "Volume", "rsi", "macd", "sma20", "bb_pct"], "metrics": {"mape": 3.0684, "rmse": 158.1863, "mae": 124.3436, "r_squared": 0.6211, "training_samples": 348, "test_samples": 87, "epochs_run": 11}}
