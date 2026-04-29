@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const http = require('http');
+const mongoose = require('mongoose');
 
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/errorHandler');
@@ -35,7 +36,12 @@ initWebSocket(server);
 
 // API Routes
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', mongo: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected', python: 'reachable' });
+  const mongoState = mongoose.connection.readyState;
+  res.json({
+    status: 'ok',
+    mongo: mongoState === 1 ? 'connected' : 'disconnected',
+    python: 'reachable'
+  });
 });
 
 app.use('/api/predict', predictRoutes);
@@ -46,8 +52,6 @@ app.use('/api/holding-report', require('./routes/holdingReport'));
 
 // Error Handling
 app.use(errorHandler);
-
-const mongoose = require('mongoose');
 
 server.listen(PORT, () => {
   console.log(`Node Server running on port ${PORT}`);
